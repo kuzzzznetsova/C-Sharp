@@ -4,163 +4,99 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab1
+namespace Lab_0
 {
-    //Агрегация по ссылке
-    class School
-    {
-        private Сanteen canteen = null;
-        private Rooms rooms = null;
-        private Gym gym = null;
-        public School(Сanteen сanteen, Rooms rooms, Gym gym)
+    //Перегрузка: конструктор, функции, операции и операнды
+    class Reestr
+    {//КЛАСС РЕЕСТР
+        public string brand;
+        public int price, year, storage;
+        public float size;
+        //КОНСТРУКТОР БЕЗ ПЕРЕМЕННЫХ (просто чтобы вывести фразу)
+        public Reestr()
         {
-            this.canteen = сanteen;
-            this.rooms = rooms;
-            this.gym = gym;
+            Console.WriteLine("Overloading constructor");
         }
-
-        public void mSchool()
+        //КОНСТРУКТОР С ПЕРЕМЕННЫМИ
+        public Reestr(string brand, int price, int year, int storage, float size)
         {
-            Console.WriteLine(" Добро пожаловать в Школу №33");
+            this.brand = brand;
+            this.price = price;
+            this.year = year;
+            this.storage = storage;
+            this.size = size;
         }
-        public Сanteen canteenSchool
+        //ФУНКЦИЯ ВЫВОДА 
+        public void print()
         {
-            set { Console.WriteLine("set canteen"); canteen = value; }
-            get { Console.Write(" хотим есть? --> "); return canteen; }
+            Console.Write("  {0} ", brand);
+            Console.Write("  {0} ", price);
+            Console.Write("  {0} ", year);
+            Console.Write("  {0} ", storage);
+            Console.Write("  {0} ", size);
+            Console.WriteLine();
         }
-        public Rooms roomsSchool //атрибут доступа к атрибутам
+        //ФУНКЦИЯ ВЫВОДА ФРАЗЫ
+        public void print(int num)
         {
-            set { Console.WriteLine("set rooms"); rooms = value; }
-            get { Console.Write(" ищем кабинет --> "); return rooms; }
+            Console.WriteLine("Overloading operation");
         }
-        public Gym gymSchool
+        //ФУНКЦИЯ СЛОЖЕНИЯ
+        public static int operator +(Reestr a, Reestr b)
         {
-            set { Console.WriteLine("set gym"); gym = value; }
-            get { Console.Write(" ищем спортзал --> "); return gym; }
+            return a.price + b.price;
         }
-    }
-    class Сanteen
-    {
-        private Buffet buffet = null;
-        public Сanteen(Buffet buffet)
+        //ФУНКЦИЯ ВОЗВРАЩЕНИЯ ЛЕТ
+        public int years()
         {
-            this.buffet = buffet;
+            return this.year;
         }
-
-        public void mCanteen()
+        //ФУНКЦИЯ СЛОЖЕНИЯ ЛЕТ
+        public int years(int nan)
         {
-            Console.WriteLine(" кушаем в столовой ");
-        }
-        public Buffet buffetSchool
-        {
-            set { Console.WriteLine("set buffet "); buffet = value; }
-            get { Console.Write(" идём в буфет --> "); return buffet; }
-        }
-    }
-
-    class Rooms
-    {
-        private Director director = null;
-        private Students students = null;
-        private Medic medic = null;
-        public int cq { get; set; }
-        public Rooms(Director director, Students students, Medic medic)
-        {
-            this.director = director;
-            this.students = students;
-            this.medic = medic;
-        }
-
-        public void mRooms()
-        {
-            Console.WriteLine(" пришли в кабинет ");
-        }
-        public Director directorSchool
-        {
-            set { Console.WriteLine(" set director"); director = value; }
-            get { Console.Write(" идём в кабинет директора --> "); return director; }
-        }
-        public Students studentsSchool
-        {
-            set { Console.WriteLine("set students"); students = value; }
-            get { Console.Write(" идём в кабинет математики --> "); return students; }
-        }
-        public Medic medicSchool
-        {
-            set { Console.WriteLine("set medic"); medic = value; }
-            get { Console.Write(" идём в мед. кабинет --> "); return medic; }
+            return this.year + nan;
         }
     }
-    class Buffet
-    {
-        public Buffet() { }
-
-        public void mBuffet()
-        {
-            Console.WriteLine("объелись пирожными в буфете");
-        }
-    }
-
-    class Director
-    {
-        public Director() { }
-
-        public void mDirector()
-        {
-            Console.WriteLine(" мы у директора ");
-        }
-    }
-    class Students
-    {
-        public Students() { }
-
-        public void mStudents()
-        {
-            Console.WriteLine(" пришли в кабинет математики");
-        }
-    }
-    class Gym
-    {
-        public Gym() { }
-
-        public void mGym()
-        {
-            Console.WriteLine(" качаемся в зале");
-        }
-    }
-    class Medic
-    {
-        public Medic() { }
-
-        public void mMedic()
-        {
-            Console.WriteLine(" нас вылечили! :-)");
-        }
-    }
-
     class Program
-    {
+    { //ОСНОВНАЯ ЧАСТЬ ПРОГРАММЫ
         static void Main(string[] args)
         {
-            Console.WriteLine(" Лабораторная работа № 1 ");
-            Console.WriteLine(" Агрегация по ссылке ");
-            Buffet buffet = new Buffet();
-            Director director = new Director();
-            Students students = new Students();
-            Gym gym = new Gym();
-            Medic medic = new Medic();
-            Сanteen canteen = new Сanteen(buffet);
-            Rooms rooms = new Rooms(director, students, medic);
-            School school = new School(canteen, rooms, gym);
+            Console.WriteLine("Лабораторная работа №0");
+            Console.WriteLine("Перегрузка (constructor, function, operator, operation)");
 
-            school.mSchool();
-            school.gymSchool.mGym();
-            school.roomsSchool.mRooms();
-            school.canteenSchool.mCanteen();
-            school.canteenSchool.buffetSchool.mBuffet();
-            school.roomsSchool.directorSchool.mDirector();
-            school.roomsSchool.studentsSchool.mStudents();
-            school.roomsSchool.medicSchool.mMedic();
+            Reestr a = new Reestr("Iphone", 64990, 2020, 64, 6.4f);
+            Reestr b = new Reestr("SAMSUNG", 29990, 2019, 128, 6.1f);
+            Reestr c = new Reestr("Xiaomi", 18990, 2019, 256, 6.4f);
+
+            Console.WriteLine("Step 1. Overloading constructors");
+            Reestr d = new Reestr(); //ВЫЗОВ КЛАССА РЕЕСТР
+            //(ТАМ ЕСТЬ КОНСТРУКТОР БЕЗ ПЕРЕМЕННЫХ И ПОЭТОМУ ВЫВЕДЕТСЯ Overloading constructor
+            Console.WriteLine();
+
+            Console.WriteLine("Step 2. Overloading operator");
+            Console.WriteLine("Reestr:");
+            //ВЫВОД РЕЕСТРА ОСУЩЕСТВЛЯЕТСЯ ТАК:
+            //а.- имя класса, print- обращение к функции
+            //т.к. никаких переменных не передаём, ВЫЗЫВАЕТСЯ ФУНКЦИЯ ПРОСТО ПРИНТ
+            a.print();
+            b.print();
+            c.print();
+            Console.WriteLine("Task print with number:");
+            a.print(1);//ЗДЕСЬ УЖЕ ЕСТЬ ПЕРЕМЕННАЯ = 1, ВЫЗЫВАЕТСЯ ФУНКЦИЯ Overloading operation
+            Console.WriteLine();
+
+            Console.WriteLine("Step 3. Overloading with +");
+            Console.Write("a.price + b.price = ");
+            Console.WriteLine("{0}", a + b);
+            Console.WriteLine();
+
+            Console.WriteLine("Step 4. Overloading function");
+            Console.WriteLine("a.years= {0}", a.years());
+            Console.WriteLine("b.years= {0}", b.years());
+            Console.WriteLine("c.years= {0}", c.years());
+            Console.WriteLine();
+
+            Console.WriteLine("(this.year + nan) a.years(100) = {0}", a.years(100));
             Console.ReadKey();
         }
     }
